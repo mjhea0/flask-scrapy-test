@@ -1,1 +1,2 @@
-Arachne
+Flask==0.11.1
+Scrapy==1.2.1

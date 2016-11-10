@@ -1,10 +1,19 @@
 # Flask Scrapy Test
 
-Uses [Arachne](http://arachne.readthedocs.org)
-
-> Only works with Python 2.7 :(
+## Setup
 
 1. Fork/Clone
 1. Create and activate a virtualenv
-1. `pip install -r requirements.txt`
-1. `python app.py`
+1. Install dependencies
+
+## Run
+
+```sh
+$ python app.py
+```
+
+Then send a POST request in a new terminal window:
+
+```sh
+$ http POST http://localhost:5000/data spider=dmoz url=http://www.dmoz.org/Computers/Programming/Languages/Python/Books/
+```

@@ -1,7 +1,7 @@
 SPIDER_SETTINGS = [
     {
-        'endpoint': 'test',
-        'location': 'spiders.QuotesSpider',
-        'spider': 'QuotesSpider',
+        'endpoint': 'dmoz',
+        'location': 'spiders.DmozSpider',
+        'spider': 'DmozSpider',
     }
 ]

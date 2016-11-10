@@ -1,25 +1,27 @@
-from datetime import datetime
-from twisted.web import http
-from twisted.web.wsgi import WSGIResource
-from twisted.web.server import Site
+from flask import Flask, request, jsonify
 from twisted.internet import reactor
-from arachne import Arachne
+from scrapy.crawler import CrawlerRunner
+from scrapy.utils.log import configure_logging
 
-from flask import request, jsonify
+from spiders.DmozSpider import DmozSpider
 
-app = Arachne(__name__)
+app = Flask(__name__)
+
+spiders = ['dmoz']
 
 @app.route('/data', methods=['GET', 'POST'])
 def get_data():
     if request.method == 'POST':
         content = request.get_json(silent=True)
-        # grab URL from payload, pass to scrapy, fire scraper, return data
-        return jsonify(content)
-    return 'testing a GET request'
+        if content['spider'] in spiders:
+            configure_logging({'LOG_FORMAT': '%(levelname)s: %(message)s'})
+            runner = CrawlerRunner()
+            d = runner.crawl(DmozSpider, start_url=content['url'])
+            d.addBoth(lambda _: reactor.stop())
+            reactor.run()
+            return('scraping')
+        return abort(404)
 
-resource = WSGIResource(reactor, reactor.getThreadPool(), app)
-site = Site(resource)
-reactor.listenTCP(8080, site)
 
 if __name__ == '__main__':
-    reactor.run()
+    app.run(debug=True)

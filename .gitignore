@@ -1,4 +1,4 @@
 *.pyc
-venv/*
+env/*
 .editorconfig
 logs/*

@@ -1,4 +1,4 @@
-#!/Users/michael.herman/repos/github/flask-scrapy-test/env/bin/python2.7
+#!/Users/michael.herman/repos/github/flask-scrapy-test/env/bin/python3.5
 
 # -*- coding: utf-8 -*-
 import re
