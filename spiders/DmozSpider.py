@@ -8,13 +8,18 @@ class DmozItem(scrapy.Item):
 class DmozSpider(scrapy.Spider):
 
     name = 'dmoz'
+    custom_settings = {
+        'ITEM_PIPELINES': {
+            'pipelines.AddTablePipeline': 500
+        }
+    }
 
     def __init__(self, *args, **kwargs):
       super(DmozSpider, self).__init__(*args, **kwargs)
       self.start_urls = [kwargs.get('start_url')]
 
     allowed_domains = ['dmoz.org']
-    start_urls = []
+    # start_urls = []
 
     def parse(self, response):
         for sel in response.xpath('//ul/li'):
