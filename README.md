@@ -24,8 +24,8 @@ Payload:
 
 ```json
 {
-	"spider": "spider_name",
-	"url": "spider_url"
+    "spider": "spider_name",
+    "url": "spider_url"
 }
 ```
 
@@ -44,9 +44,9 @@ First, update the `ITEM_PIPELINES` in the spider:
 
 ```python
 custom_settings = {
-		'ITEM_PIPELINES': {
-				'pipelines.NewPipeline': 500
-		}
+    'ITEM_PIPELINES': {
+        'pipelines.NewPipeline': 500
+    }
 }
 ```
 
@@ -56,6 +56,6 @@ Then add the new class to *pipelines.py*:
 class NewPipeline(object):
 
     def process_item(self, item, spider):
-				# add code to insert date into db
+	# add code to insert date into db
         return item
 ```
